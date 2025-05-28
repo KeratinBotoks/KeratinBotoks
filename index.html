@@ -5,16 +5,36 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity Web Player | Keratin _ Botoks</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
     <script>
-        function FromUnityToJs() {
-            alert("Very good!");
+        function FromUnityToJs() 
+        {
+            callMethodWallPost();
         }
+        
+        function callMethodWallPost() // вызываем метод ВК
+        {
+            vkBridge.send('VKWebAppShowWallPostBox', {
+              message: 'Первая запись на стене!'
+              })
+              .then((data) => {
+                if (data.post_id) {
+                  // Запись размещена
+                  console.log ("ok");
+                }
+              })
+              .catch((error) => {
+                // Ошибка
+                console.log(error);
+              });
+
+         }
 
         var unityInstance = UnityLoader.Instantiate("unityContainer", "Build/Lesson_build.json", { onProgress: UnityProgress });
 
         jQuery(document).ready(function ($) {
-
-
+   
+            vkBridge.send('VKWebAppInit');
 
         });
     </script>
