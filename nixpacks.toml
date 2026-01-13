@@ -1,0 +1,18 @@
+[phases.setup]
+nixPkgs = ["python311", "sqlite", "gcc"]
+
+[phases.install]
+cmds = [
+    "pip install --upgrade pip",
+    "pip install -r requirements.txt"
+]
+
+[phases.build]
+cmds = ["python -c \"from database import db; print('✅ База данных инициализирована')\""]
+
+[start]
+cmd = "python bot.py"
+
+[environment]
+BOT_TOKEN = { required = true }
+CHANNEL_ID = { required = false }
