@@ -1,0 +1,17 @@
+[phases.setup]
+cmds = [
+    "apt-get update && apt-get install -y python3 python3-pip",
+    "pip install --upgrade pip"
+]
+
+[phases.install]
+cmds = [
+    "pip install -r requirements.txt"
+]
+
+[start]
+cmd = "python bot.py"
+
+[environment]
+BOT_TOKEN = "8246923680:AAGKcVwu0xz0qEi-AqEqdm8EUJqNU2_h6oA"
+CHANNEL_ID = "-1003360198094"
